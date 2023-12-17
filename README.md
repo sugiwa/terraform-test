@@ -10,13 +10,13 @@ docker run --tty --volume $(pwd):/tf jameswoolfenden/pike scan -d /tf
 ```
 https://github.com/JamesWoolfenden/pike
 
-起動
+インスタンス作成
 ```
 terraform init
 terraform apply
 ```
 
-インスタンス作成
+ssh接続
 ```
 sh ./ssh_connect.sh
 ```
