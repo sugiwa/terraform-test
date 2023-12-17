@@ -5,7 +5,7 @@ resource "aws_instance" "ec2_instance" {
   vpc_security_group_ids      = [aws_security_group.ec2_sg.id]
   subnet_id                   = aws_subnet.ec2_public_subnet_1a.id
   associate_public_ip_address = true
-  key_name                    = var.key_name
+  key_name                    = aws_key_pair.ec2_key_pair.id
 
   tags = {
     Name = var.instance_name

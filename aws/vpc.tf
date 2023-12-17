@@ -9,9 +9,11 @@ resource "aws_vpc" "ec2_vpc" {
 
 # Subnet
 resource "aws_subnet" "ec2_public_subnet_1a" {
-  vpc_id            = aws_vpc.ec2_vpc.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = var.az_a
+  vpc_id                  = aws_vpc.ec2_vpc.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = var.az_a
+  map_public_ip_on_launch = true
+
   tags = {
     Name = var.tag_name
   }
