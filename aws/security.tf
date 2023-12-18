@@ -8,7 +8,7 @@ resource "aws_security_group_rule" "ec2_ingress" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = ["${chomp(data.http.ipv4_icanhazip.response_body)}/32"]
   security_group_id = aws_security_group.ec2_sg.id
 }
 
@@ -48,3 +48,6 @@ resource "aws_security_group_rule" "ec2_egress_ssh" {
   security_group_id = aws_security_group.ec2_sg.id
 }
 
+data "http" "ipv4_icanhazip" {
+  url = "https://ipv4.icanhazip.com/"
+}
