@@ -7,15 +7,20 @@ resource "google_compute_instance" "terraform_instance" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
 
   network_interface {
+    network    = google_compute_network.vpc_network.id
     subnetwork = google_compute_subnetwork.public_subnet_1a.id
 
     access_config {
       # Include this section to give the VM an external IP address
     }
+  }
+
+  metadata = {
+    "ssh-keys" = "${var.username}:${tls_private_key.ssh_key.public_key_openssh}"
   }
 }
