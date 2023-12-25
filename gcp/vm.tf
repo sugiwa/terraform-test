@@ -1,9 +1,11 @@
 # Compute Engine
 resource "google_compute_instance" "terraform_instance" {
-  name         = "terraform-instance"
-  machine_type = "e2-micro"
-  zone         = var.zone
-  tags         = ["ssh"]
+  name = "terraform-instance"
+  # machine_type = "e2-micro"
+  machine_type              = "e2-medium"
+  allow_stopping_for_update = true
+  zone                      = var.zone
+  tags                      = ["ssh", "web"]
 
   boot_disk {
     initialize_params {
